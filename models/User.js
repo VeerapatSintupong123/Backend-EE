@@ -30,6 +30,16 @@ const UserSchema = new mongoose.Schema({
         minlength: 6,
         select: false
     },
+    geology:{
+        type: String,
+        enum: ['finished','unfinished'],
+        default: 'unfinished'
+    },
+    Geography:{
+        type: String,
+        enum: ['finished','unfinished'],
+        default: 'unfinished'
+    },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     createdAt: {
