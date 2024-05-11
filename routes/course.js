@@ -4,7 +4,7 @@ const {authorize, protect} = require('../middleware/auth');
 
 const router = express.Router();
 
-router.route('/').get(getCourses).post(createCourse);
-router.route('/:id').get(getCourse).put(updateCourse).delete(deleteCourse);
+router.route('/').get(protect,authorize("admin","user"),getCourses).post(protect,authorize("admin"),createCourse);
+router.route('/:id').get(protect,authorize("admin","user"),getCourse).put(protect,authorize("admin"),updateCourse).delete(protect,authorize("admin"),deleteCourse);
 
 module.exports = router;
