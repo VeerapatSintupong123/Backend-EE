@@ -18,9 +18,6 @@ const sendTokenResponse = (user, statusCode, res) => {
     })
 };
 
-//@desc     Register user
-//@route    POST /api/v1/auth/register
-//@access   Public
 exports.register = async (req,res,next) => {
     try{
         const {name,telephone_number,email,role,password} = req.body;    
@@ -41,9 +38,6 @@ exports.register = async (req,res,next) => {
     }
 };
 
-//@desc     Login user
-//@route    POST /api/v1/auth/login
-//@access   Public
 exports.login = async (req,res,next) => {
     const {email,password} = req.body;
 
@@ -77,9 +71,6 @@ exports.login = async (req,res,next) => {
     sendTokenResponse(user,200,res);
 }
 
-//@desc     Get current Logged in user
-//@route    POST /api/v1/auth/me
-//@access   Private
 exports.getMe = async(req,res,next) => {
     const user = await User.findById(req.user.id);
     res.status(200).json({

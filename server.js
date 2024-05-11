@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const auth = require('./routes/auth');
+const course = require('./routes/course');
 
 dotenv.config({path:'./config/config.env'});
 
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/course', course);
 
 const PORT = process.env.PORT || 5000;
 

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
 const UserSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -38,13 +37,6 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
 });
-
-// UserSchema.virtual('appointments', {
-//     ref: 'Appointment',
-//     localField: '_id',
-//     foreignField: 'user',
-//     justOne:false
-// });
 
 //Encrypt password using bcrypt
 UserSchema.pre('save',async function(next) {
