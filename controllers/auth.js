@@ -20,7 +20,8 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 exports.register = async (req,res,next) => {
     try{
-        const {name,telephone_number,email,role,password} = req.body;    
+        const {name,telephone_number,email,role,password,fullName,
+            gender,age,schoolName,schoolProvince,schoolLevel} = req.body;    
 
         //Create user
         const user = await User.create({
@@ -29,12 +30,18 @@ exports.register = async (req,res,next) => {
             email:email,
             role:role,
             password:password,
+            fullName: fullName,
+            gender: gender,
+            age: age,
+            schoolName: schoolName,
+            schoolProvince: schoolProvince,
+            schoolLevel: schoolLevel,
         });
 
         sendTokenResponse(user,200,res);
     } catch (err){
         console.log(err);
-        res.status(400).json({success:false});
+        res.status(400).json({success:false,error:err.message});
     }
 };
 
@@ -74,7 +81,7 @@ exports.login = async (req,res,next) => {
 exports.getMe = async(req,res,next) => {
     const user = await User.findById(req.user.id);
     res.status(200).json({
-        success: true,
+        success: true,  
         data: user
     });
 };
@@ -94,6 +101,29 @@ exports.logout = async (req,res,next) => {
 exports.testAuth = async (req,res)=>{
     res.status(200).json({
         success: true,
-        data: "data"
+        data: "user"
     });
 };
+
+exports.updateUser = async (req,res)=>{
+    try{
+        const User = require("../models/User");
+        const user = await User.findByIdAndUpdate(req.params.id, req.body);
+
+        if(!user)
+            res.status(400).json({
+                success: false,
+                message: "Can not find course"
+            });
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+    }catch(error){
+        res.status(400).json({
+            success: false,
+            error: error.message,
+        });
+    }
+}

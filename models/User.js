@@ -27,15 +27,34 @@ const UserSchema = new mongoose.Schema({
     password: {
         type:String,
         required: [true, 'Please add a password'],
-        minlength: 6,
+        minlength: 8,
         select: false
     },
-    geology:{
-        type: String,
-        enum: ['finished','unfinished'],
-        default: 'unfinished'
+    fullName:{
+        type:String,
+        required: [true, 'Please add a fullName'],
     },
-    Geography:{
+    gender:{
+        type:String,
+        required: [true, 'Please add a gender'],
+    },
+    age:{
+        type:String,
+        required: [true, 'Please add a age'],
+    },
+    schoolName:{
+        type:String,
+        required: [true, 'Please add a schoolName'],
+    },
+    schoolProvince:{
+        type:String,
+        required: [true, 'Please add a schoolProvince'],
+    },
+    schoolLevel:{
+        type:String,
+        required: [true, 'Please add a schoolLevel'],
+    },
+    geography:{
         type: String,
         enum: ['finished','unfinished'],
         default: 'unfinished'

@@ -14,6 +14,10 @@ app.use(express.json());
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/course', course);
 
+app.use('/',(req,res)=>{
+    res.send("This is Earthed backend");
+})
+
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, console.log('Server runnig in ',process.env.NODE_ENV, 'mode on ' + process.env.HOST + '/api/v1'));
