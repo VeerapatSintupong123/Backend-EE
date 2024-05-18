@@ -3,12 +3,14 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const auth = require('./routes/auth');
 const course = require('./routes/course');
+const cors = require('cors');
 
 dotenv.config({path:'./config/config.env'});
 
 connectDB();
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use('/api/v1/auth', auth);
