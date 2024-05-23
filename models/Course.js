@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const alertSchema = new mongoose.Schema({
     type: { type: String, enum: ["Answering", "4MCQ", "2MCQ"], required: true },
+    time: {type: String, required: true},
     question: { type: String, required: true },
     choice: { type: [String], default: [] },
     answer: { type: String, default: "" },
