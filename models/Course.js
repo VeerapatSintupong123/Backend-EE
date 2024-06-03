@@ -14,6 +14,14 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add a subject name'],
     },
+    subsubject: {
+        type: String,
+        required: [true, 'Please add a subsubject name'],
+    },
+    unit: {
+        type: String,
+        required: [true, 'Please add a unit name'],
+    },
     title: {
         type: String,
         required: [true, 'Please add a title'],

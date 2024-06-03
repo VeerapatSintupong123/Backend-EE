@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const courseStatus = new mongoose.Schema({
+    subject: { type: String,required: true },
+    payment: { type: String,enum: ['finished','unfinished'],default: 'unfinished'},
+    chapter: { type: [String],default:["1","1","1"]},
+    current: { type: [String],enum: ['pre','learn','post'],default: ['pre','pre','pre']}
+});
+
+
 const UserSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -54,10 +62,9 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required: [true, 'Please add a schoolLevel'],
     },
-    geography:{
-        type: String,
-        enum: ['finished','unfinished'],
-        default: 'unfinished'
+    course:{
+        type: [courseStatus],
+        default: [{subject:"Geography",payment:"unfinished",chapter: ["1", "1", "1"], current: ["pre", "pre", "pre"]}]
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
